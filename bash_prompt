@@ -1,0 +1,74 @@
+# http://blog.bitfluent.com/post/27983389/git-utilities-you-cant-live-without
+# http://superuser.com/questions/31744/how-to-get-git-completion-bash-to-work-on-mac-os-x
+# http://tammersaleh.com/posts/a-better-rvm-bash-prompt
+# https://rvm.beginrescueend.com/workflow/prompt/
+
+# Results in a prompt like this:
+# 17:39:15 cmoel@genesis ~/code/project (master*+:dbec3a0)
+# $
+
+# Only show username@server over SSH. Still like it when I'm on my local system though
+# username_and_hostname() {
+#   if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+#     printf "%s" "$(username)\[\033[0m\]@$(hostname)\[\033[35m\]:"
+#   fi
+# }
+
+# fun prompt characters
+# ¶❡⋮⦾⦿ℑ➤⇶⟿⥭⥬»⟫⟩❭‽¡❢❝❣~¢€௹ƒ₣☀☼☂☇♦♤♚♔♕♤♧☺♨✈✇✑✒✜☪⚇⚆⚈⚉🃏☮☯⚛❥⨌∯∫∷∴∿≀≔≠≡≣≬⊕⊗⊜⋙⋯⋰⩺⪼⫸⫺⟡⟢⟫⦔⧽❌‼⁉❗❓⭕✔🇫🇷💣🍟🍪🌵🌒Þß¦£
+
+current_time()          { printf "%s" "\[\033[0m\]\D{%H:%M:%S}"; } # print time in black
+username()              { printf "%s" "\[\033[32m\]\u"; }          # print username in green
+hostname()              { printf "%s" "\[\033[36m\]\h"; }          # print hostname in cyan
+path()                  { printf "%s" "\[\033[35m\]\w"; }          # print path in magenta
+username_and_hostname() { printf "%s" "$(username)\[\033[0m\]@$(hostname)\[\033[35m\]:"; }
+ps1_identity()          { printf "%s" "$(username_and_hostname)$(path)"; }
+
+ps1_git() {
+  local branch="" sha1="" line="" attr="" color=0
+
+  shopt -s extglob # Important, for our nice matchers :)
+
+  command -v git >/dev/null 2>&1 || {
+    printf " \033[1;37m\033[41m[git not found]\033[m "
+    return 0
+  }
+
+  branch=$(git symbolic-ref -q HEAD 2>/dev/null) || return 0 # Not in git repo.
+  branch=${branch##refs/heads/}
+
+  # Now we display the branch.
+  sha1=$(git rev-parse --short --quiet HEAD)
+
+  case "${branch:-"(no branch)"}" in
+    deploy) color=34 ;; # blue
+    master) color=31 ;; # red
+    *)
+      if [[ -n "${branch}" ]] ; then # Feature Branch :)
+        color=32 # green
+      else
+        color=0  # reset
+      fi
+      ;;
+  esac
+
+  [[ $color -gt 0 ]] &&
+    printf "\[\033[${attr}${color}m\](${branch}$(ps1_git_status):$sha1)\[\033[0m\]"
+}
+
+ps1_git_status() {
+  local git_status="$(git status 2>/dev/null)"
+
+  [[ "${git_status}" = *Untracked[[:space:]]files:* ]] && printf "%s" "+"
+  [[ "${git_status}" = *deleted* ]]                    && printf "%s" "-"
+  [[ "${git_status}" = *modified:* ]]                  && printf "%s" "*"
+}
+
+bash_prompt() {
+  local prompt_char='$' separator="\[\033[0m\]\n"
+  (( $UID == 0 )) && prompt_char='#'
+
+  PS1="$(current_time) $(ps1_identity) $(ps1_git)${separator}${prompt_char} "
+}
+
+export PROMPT_COMMAND="bash_prompt"

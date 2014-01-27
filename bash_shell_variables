@@ -1,0 +1,7 @@
+export EDITOR='vi'
+export LESS='-M'
+export CC=/usr/bin/llvm-gcc-4.2
+export HISTIGNORE="history:pwd:exit:df:ls:ls -la:ll:la"
+export HISTCONTROL=ignoreboth                    # ignoredups:ignorespace
+export GUARD_NOTIFY=false                        # Remove Guard nofications
+export NODE_PATH="$NODE_PATH:/usr/local/lib/node_modules"

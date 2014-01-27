@@ -1,0 +1,45 @@
+
+[credential]
+helper = /opt/boxen/bin/boxen-git-credential
+
+[core]
+excludesfile = /Users/cmoel/.gitignore_global
+editor = vim
+autocrlf = input
+pager = less -FRSX
+
+[diff]
+tool = vimdiff
+
+[alias]
+hist = log --graph --decorate --oneline --all
+co = checkout
+dc = diff --cached
+st = status
+ci = commit
+di = diff
+dfs = diff --staged
+br = branch
+df = diff
+
+[user]
+name = Christopher Moeller
+email = cmoel@me.com
+
+[color]
+ui = true
+
+[merge]
+tool = vimdiff
+
+[hub]
+protocol = https
+
+[init]
+templatedir = /Users/cmoel/.git_template
+
+[pull]
+rebase = true
+
+[apply]
+whitespace = nowarn
