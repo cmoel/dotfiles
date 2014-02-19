@@ -12,7 +12,6 @@ done
 # PATH...
 PATH="${HOME}/bin"                                            # First home folder bin
 PATH="${PATH}:/Applications/Postgres.app/Contents/MacOS/bin"  # Postgres
-PATH="${PATH}:/usr/local/heroku/bin"                          # Heroku
 PATH="${PATH}:/usr/local/bin:/usr/local/sbin"                 # local stuffs
 PATH="${PATH}:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin"     # Then add the other default OS X places
 export PATH
