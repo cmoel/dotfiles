@@ -16,21 +16,8 @@ alias bi='cd $HOME/code && cd bi'
 alias wima='cd $HOME/code && cd wima'
 
 # Git aliases
-alias g='git'
 alias gs='git status '
-alias ga='git add '
-alias gb='git branch '
-alias gc='git commit'
 alias gd='git diff'
-alias go='git checkout '
-alias gp='git push'
-alias gl='git pull'
-alias gpo='git push origin'
-alias gaa='git add -A .'
-alias gcm='git commit -m '
-alias gcam='git commit -am '
-alias grm='git status | grep deleted | awk "{print \$3}" | xargs git rm'
-alias changelog='git log `git log -1 --format=%H -- CHANGELOG*`..; cat CHANGELOG*'
 
 # Ruby/Rails helper aliases
 alias b='bundle'
