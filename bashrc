@@ -10,7 +10,9 @@ for f in git-completion.bash tmux; do
 done
 
 # PATH...
+export GOPATH="${HOME}/code/go"
 PATH="${HOME}/bin"                                            # First home folder bin
+PATH="${PATH}:${GOPATH}/bin"
 PATH="${PATH}:/Applications/Postgres.app/Contents/MacOS/bin"  # Postgres
 PATH="${PATH}:/usr/local/bin:/usr/local/sbin"                 # local stuffs
 PATH="${PATH}:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin"     # Then add the other default OS X places
