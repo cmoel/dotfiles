@@ -159,6 +159,9 @@ nnoremap <Down>  :echoe "Use j"<CR>
 " git mappings
 nnoremap <leader>gs :Gstatus<CR>
 
+" go mappings
+nnoremap <leader>go :!clear; go run %<CR>
+
 " rake mappings
 nnoremap <leader>r  :!clear; bundle exec rake<CR>
 nnoremap <leader>ma :!clear; bundle exec rake minitest:all:quick<CR>
