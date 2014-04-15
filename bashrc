@@ -1,3 +1,6 @@
+# use vi bindings
+set -o vi
+
 # aliases, shell variables, and prompt
 source "${HOME}/.bash_aliases"
 source "${HOME}/.bash_prompt"
