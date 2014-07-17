@@ -1,6 +1,6 @@
 ---
 :sources:
 - http://rubygems.org
-install: --no-ri --no-rdoc
-update: --no-ri --no-rdoc
+install: --no-rdoc
+update: --no-rdoc
 :verbose: true
