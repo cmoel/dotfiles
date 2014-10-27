@@ -21,7 +21,7 @@ set wildmenu
 set wildmode=list:longest,full
 set wildignore+=*~,*.aux,tags
 set cursorline
-set scrolloff=2
+set timeoutlen=2000 ttimeoutlen=0
 
 set wrap linebreak nolist showbreak=…  " soft wrap text nicely
 
@@ -29,7 +29,7 @@ set wrap linebreak nolist showbreak=…  " soft wrap text nicely
 syntax on
 
 " leader
-let mapleader = ","
+let mapleader = "\<Space>"
 let maplocalleader = "\\"
 
 " Enable file type detection and do language-dependent indenting.
@@ -129,6 +129,7 @@ endif
 " If typing 'W' in command mode, do 'w' and don't bitch at me
 cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'w')?('W'):('w'))
 
+nnoremap <leader>q :<C-U>qall<CR>
 nnoremap Q :<C-U>q<CR>
 nnoremap ; :
 
@@ -143,8 +144,8 @@ inoremap <c-u> <esc>viwUea
 nnoremap <c-u> viwUe
 
 " Easily write files
-nnoremap <leader>ww :w<cr>
-nnoremap <leader>zz :wall<cr>:xa<cr>
+nnoremap <leader>w :w<cr>
+" inoremap <leader>w <C-c>:w<cr>
 
 " Easily edit and source .vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -156,18 +157,23 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up>    :echoe "Use k"<CR>
 nnoremap <Down>  :echoe "Use j"<CR>
 
-" git mappings
-nnoremap <leader>gs :Gstatus<CR>
+" bundler mappings
+nnoremap <leader>bb :Bundle<CR>
+nnoremap <leader>bu :Bundle update
+nnoremap <leader>bo :Bundle outdated<CR>
+
+" elixir mappings
+nnoremap <leader>mt :!clear; mix test<CR>
 
 " go mappings
 nnoremap <leader>go :!clear; go run %<CR>
 
 " rake mappings
-nnoremap <leader>r  :!clear; bundle exec rake<CR>
-nnoremap <leader>ma :!clear; bundle exec rake minitest:all:quick<CR>
-nnoremap <leader>mc :!clear; bundle exec rake minitest:controllers<CR>
-nnoremap <leader>mf :!clear; bundle exec rake minitest:features<CR>
-nnoremap <leader>mm :!clear; bundle exec rake minitest:models<CR>
+nnoremap <leader>r  :!clear; bin/rake<CR>
+nnoremap <leader>ma :!clear; bin/rake test:all<CR>
+nnoremap <leader>mc :!clear; bin/rake test:controllers<CR>
+nnoremap <leader>mf :!clear; bin/rake test:features<CR>
+nnoremap <leader>mm :!clear; bin/rake test:models<CR>
 
 " rspec mappings
 nnoremap <leader>ta :call RunAllSpecs()<CR>
