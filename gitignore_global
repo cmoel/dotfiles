@@ -117,3 +117,4 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+.vagrant
