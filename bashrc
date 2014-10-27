@@ -1,6 +1,3 @@
-# use vi bindings
-set -o vi
-
 # aliases, shell variables, and prompt
 source "${HOME}/.bash_aliases"
 source "${HOME}/.bash_prompt"
@@ -15,8 +12,8 @@ done
 # PATH...
 export GOPATH="${HOME}/code/go"
 PATH="${HOME}/bin"                                            # First home folder bin
+PATH="${PATH}:/Applications/Postgres.app/Contents/Versions/9.3/bin"
 PATH="${PATH}:${GOPATH}/bin"
-PATH="${PATH}:/Applications/Postgres.app/Contents/MacOS/bin"  # Postgres
 PATH="${PATH}:/usr/local/bin:/usr/local/sbin"                 # local stuffs
 PATH="${PATH}:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin"     # Then add the other default OS X places
 export PATH
