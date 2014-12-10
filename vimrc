@@ -74,6 +74,9 @@ if has("autocmd")
   " Remove unneeded white space at the end of lines.
   autocmd FileType c,coffee,css,cpp,erb,haml,html,java,js,md,pl,php,py,rb,rdoc,ru,scss,txt,xml,yml autocmd BufWritePre <buffer> :%s/\s\+$//e
 
+  " Regenerate ctags
+  autocmd FileType c,cpp,erb,js,md,pgp,py,rb,rdoc,ru,scss,yml autocmd BufWritePost <buffer> silent! !ctags -R &
+
   " Syntax of these languages is fussy over tabs vs spaces
   autocmd FileType make setlocal tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
   autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
