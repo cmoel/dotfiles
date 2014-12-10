@@ -166,47 +166,8 @@ nnoremap <leader>mf :!clear; bin/rake test:features<CR>
 nnoremap <leader>mm :!clear; bin/rake test:models<CR>
 
 " rspec mappings
-nnoremap <leader>ta :call RunAllSpecs()<CR>
-nnoremap <leader>t  :call RunCurrentSpecFile()<CR>
-nnoremap <leader>s  :call RunNearestSpec()<CR>
-nnoremap <leader>l  :call RunLastSpec()<CR>
-
-function! RunAllSpecs()
-  let l:command = "s spec" . " --format documentation"
-  call RunSpecs(l:command)
-endfunction
-
-function! RunCurrentSpecFile()
-  if InSpecFile()
-    let l:command = "s " . @% . " --format documentation"
-    call SetLastSpecCommand(l:command)
-    call RunSpecs(l:command)
-  endif
-endfunction
-
-function! RunNearestSpec()
-  if InSpecFile()
-    " let l:command = "s " . @% . " --line_number " . line(".") . " --format documentation"
-    let l:command = "s " . @% . ":" . line(".") . " --format documentation"
-    call SetLastSpecCommand(l:command)
-    call RunSpecs(l:command)
-  endif
-endfunction
-
-function! RunLastSpec()
-  if exists("t:last_spec_command")
-    call RunSpecs(t:last_spec_command)
-  endif
-endfunction
-
-function! InSpecFile()
-  return match(expand("%"), "_spec.rb$") != -1
-endfunction
-
-function! SetLastSpecCommand(command)
-  let t:last_spec_command = a:command
-endfunction
-
-function! RunSpecs(command)
-  execute ":w\|!clear && echo " . a:command . " && echo && " . a:command
-endfunction
+nnoremap <leader>t :call RunCurrentSpecFile()<CR>
+nnoremap <leader>s :call RunNearestSpec()<CR>
+nnoremap <leader>l :call RunLastSpec()<CR>
+nnoremap <leader>a :call RunAllSpecs()<CR>
+let g:rspec_command = "Dispatch foreman run rspec {spec}"
