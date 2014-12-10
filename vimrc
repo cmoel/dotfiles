@@ -60,7 +60,7 @@ if version >= 700
 endif
 
 " map Silver Searcher
-nnoremap <leader>a :Ag!<space>
+nnoremap <leader>g :Ag!<space>
 
 " hint to keep lines short
 if exists('+colorcolumn')
