@@ -145,17 +145,10 @@ nnoremap <c-u> viwUe
 
 " Easily write files
 nnoremap <leader>w :w<cr>
-" inoremap <leader>w <C-c>:w<cr>
 
 " Easily edit and source .vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-
-" Get off my lawn
-nnoremap <Left>  :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up>    :echoe "Use k"<CR>
-nnoremap <Down>  :echoe "Use j"<CR>
 
 " bundler mappings
 nnoremap <leader>bb :Bundle<CR>
@@ -164,9 +157,6 @@ nnoremap <leader>bo :Bundle outdated<CR>
 
 " elixir mappings
 nnoremap <leader>mt :!clear; mix test<CR>
-
-" go mappings
-nnoremap <leader>go :!clear; go run %<CR>
 
 " rake mappings
 nnoremap <leader>r  :!clear; bin/rake<CR>
