@@ -150,8 +150,8 @@ nnoremap <c-u> viwUe
 nnoremap <leader>w :w<cr>
 
 " Easily edit and source .vimrc
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>ve :vsplit $MYVIMRC<cr>
+nnoremap <leader>vs :source $MYVIMRC<cr>
 
 " bundler mappings
 nnoremap <leader>bb :Bundle<CR>
