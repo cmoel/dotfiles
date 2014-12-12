@@ -14,6 +14,7 @@ alias code='cd $HOME/code && pwd && ls -lAGh'
 # Project aliases
 alias bi='cd $HOME/code && cd bi'
 alias wima='cd $HOME/code && cd wima'
+alias grok='cd $HOME/code && cd grok'
 
 # Git aliases
 alias gs='git status '
