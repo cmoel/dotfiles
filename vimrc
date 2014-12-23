@@ -173,6 +173,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <leader>q :cclose<CR>
+nnoremap <leader>f :CtrlP<CR>
 
 " Uppercase word using <c-u>
 inoremap <c-u> <esc>viwUea
