@@ -191,13 +191,6 @@ nnoremap <leader>bb :Bundle<CR>
 nnoremap <leader>bu :Bundle update
 nnoremap <leader>bo :Bundle outdated<CR>
 
-" rake mappings
-nnoremap <leader>r  :!clear; bin/rake<CR>
-nnoremap <leader>ma :!clear; bin/rake test:all<CR>
-nnoremap <leader>mc :!clear; bin/rake test:controllers<CR>
-nnoremap <leader>mf :!clear; bin/rake test:features<CR>
-nnoremap <leader>mm :!clear; bin/rake test:models<CR>
-
 " rspec mappings
 nnoremap <leader>t :call RunCurrentSpecFile()<CR>
 nnoremap <leader>s :call RunNearestSpec()<CR>
