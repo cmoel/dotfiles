@@ -1,6 +1,3 @@
-silent! call pathogen#infect()
-call pathogen#helptags()
-
 set nocompatible
 set autoindent
 set backspace=indent,eol,start
@@ -31,9 +28,6 @@ syntax on
 " leader
 let mapleader = "\<Space>"
 let maplocalleader = "\\"
-
-" Enable file type detection and do language-dependent indenting.
-filetype plugin indent on
 
 " set up some custom colors
 highlight clear SignColumn
