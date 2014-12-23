@@ -190,10 +190,3 @@ nnoremap <leader>vs :source $MYVIMRC<cr>
 nnoremap <leader>bb :Bundle<CR>
 nnoremap <leader>bu :Bundle update
 nnoremap <leader>bo :Bundle outdated<CR>
-
-" rspec mappings
-nnoremap <leader>t :call RunCurrentSpecFile()<CR>
-nnoremap <leader>s :call RunNearestSpec()<CR>
-nnoremap <leader>l :call RunLastSpec()<CR>
-nnoremap <leader>a :call RunAllSpecs()<CR>
-let g:rspec_command = "Dispatch foreman run rspec {spec}"
