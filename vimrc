@@ -164,7 +164,6 @@ endif
 " If typing 'W' in command mode, do 'w' and don't bitch at me
 cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'w')?('W'):('w'))
 
-nnoremap <leader>q :<C-U>qall<CR>
 nnoremap Q :<C-U>q<CR>
 nnoremap ; :
 
@@ -173,7 +172,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-nnoremap <leader>c :cclose<CR>
+nnoremap <leader>q :cclose<CR>
 
 " Uppercase word using <c-u>
 inoremap <c-u> <esc>viwUea
