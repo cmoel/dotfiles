@@ -1,4 +1,42 @@
+" setup Vundle
 set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+
+" plugins
+Plugin 'artnez/vim-wipeout'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'godlygeek/tabular'
+Plugin 'janko-m/vim-test'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mattn/gist-vim'
+Plugin 'mattn/webapi-vim'
+Plugin 'rking/ag.vim'
+Plugin 'skalnik/vim-vroom'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-characterize'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-liquid'
+Plugin 'tpope/vim-obsession'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-rake'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-tbone'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-vinegar'
+
+" back to regularly scheduled vimrc
+call vundle#end()
+filetype plugin indent on
+
 set autoindent
 set backspace=indent,eol,start
 set incsearch       " Incremental search
