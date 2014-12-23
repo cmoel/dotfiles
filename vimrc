@@ -191,9 +191,6 @@ nnoremap <leader>bb :Bundle<CR>
 nnoremap <leader>bu :Bundle update
 nnoremap <leader>bo :Bundle outdated<CR>
 
-" elixir mappings
-nnoremap <leader>mt :!clear; mix test<CR>
-
 " rake mappings
 nnoremap <leader>r  :!clear; bin/rake<CR>
 nnoremap <leader>ma :!clear; bin/rake test:all<CR>
