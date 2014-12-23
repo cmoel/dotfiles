@@ -190,3 +190,11 @@ nnoremap <leader>vs :source $MYVIMRC<cr>
 nnoremap <leader>bb :Bundle<CR>
 nnoremap <leader>bu :Bundle update
 nnoremap <leader>bo :Bundle outdated<CR>
+
+" vim-test
+nnoremap <leader>t :TestFile<CR>
+nnoremap <leader>s :TestNearest<CR>
+nnoremap <leader>l :TestLast<CR>
+nnoremap <leader>a :TestSuite<CR>
+let g:test#rspec#executable = "foreman run rspec"
+let g:test#cucumber#executable = "foreman run cucumber"
