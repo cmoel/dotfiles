@@ -1,4 +1,5 @@
 # aliases, shell variables, and prompt
+set shell=$SHELL
 source "${HOME}/.bash_aliases"
 source "${HOME}/.bash_prompt"
 source "${HOME}/.bash_shell_variables"
