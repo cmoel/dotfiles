@@ -85,6 +85,11 @@ pickle-email-*.html
 /custom_plan.rb
 
 
+# Elixir #
+##########
+*.beam
+
+
 # SASS #
 ########
 *.sass-cache
