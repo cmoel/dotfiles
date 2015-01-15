@@ -203,3 +203,4 @@ nnoremap <leader>l :TestLast<CR>
 nnoremap <leader>a :TestSuite<CR>
 let g:test#rspec#executable = "foreman run rspec"
 let g:test#cucumber#executable = "foreman run cucumber"
+let g:test#strategy = "dispatch"
