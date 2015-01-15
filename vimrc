@@ -201,6 +201,6 @@ nnoremap <leader>t :TestFile<CR>
 nnoremap <leader>s :TestNearest<CR>
 nnoremap <leader>l :TestLast<CR>
 nnoremap <leader>a :TestSuite<CR>
-let g:test#rspec#executable = "foreman run rspec"
-let g:test#cucumber#executable = "foreman run cucumber"
 let g:test#strategy = "dispatch"
+let g:test#ruby#rspec#executable = "foreman run rspec"
+let g:test#ruby#cucumber#executable = "foreman run cucumber"
