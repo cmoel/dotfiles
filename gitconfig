@@ -14,7 +14,6 @@ dc = diff --cached
 st = status
 ci = commit
 di = diff
-dfs = diff --staged
 br = branch
 df = diff
 
