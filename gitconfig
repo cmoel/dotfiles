@@ -8,6 +8,7 @@ pager = less -FRSX
 tool = vimdiff
 
 [alias]
+harvest = !git log --oneline --all --reverse --since="5am" --author="Christopher" | sed 's/^/* /'
 hist = log --graph --decorate --oneline --all
 co = checkout
 dc = diff --cached
