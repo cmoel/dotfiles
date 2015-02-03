@@ -24,6 +24,7 @@ end
 
 puts "Bootstrapping dotfiles..."
 link "~/dotfiles/ackrc", "~/.ackrc"
+link "~/dotfiles/agignore", "~/.agignore"
 link "~/dotfiles/bash_aliases", "~/.bash_aliases"
 link "~/dotfiles/bash_profile", "~/.bash_profile"
 link "~/dotfiles/bash_prompt", "~/.bash_prompt"
