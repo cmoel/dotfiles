@@ -19,6 +19,12 @@ PATH="${PATH}:/usr/local/bin:/usr/local/sbin"                 # local stuffs
 PATH="${PATH}:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin"     # Then add the other default OS X places
 export PATH
 
+# CDPATH
+export CDPATH=".:${HOME}/code/grok"
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
 function serve {
   ruby -run -e httpd . -p3000
 }
