@@ -6,17 +6,20 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " plugins
-Plugin 'artnez/vim-wipeout'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'godlygeek/tabular'
 Plugin 'janko-m/vim-test'
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plugin 'kana/vim-textobj-user'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mattn/gist-vim'
 Plugin 'mattn/webapi-vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'othree/yajs.vim'
+Plugin 'pangloss/vim-javascript'
 Plugin 'rking/ag.vim'
-Plugin 'skalnik/vim-vroom'
 Plugin 'szw/vim-tags'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-characterize'
@@ -24,13 +27,16 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-liquid'
 Plugin 'tpope/vim-obsession'
+Plugin 'tpope/vim-projectionist'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-vinegar'
@@ -56,12 +62,8 @@ set virtualedit=block
 set wildmode=list:longest,full
 set wildignore+=*~,*.aux,tags
 set cursorline
-set timeoutlen=2000 ttimeoutlen=0
-
-set wrap linebreak nolist showbreak=…  " soft wrap text nicely
-
-" Switch syntax highlighting on
-syntax on
+set lazyredraw
+set nowrap
 
 " leader
 let mapleader = "\<Space>"
@@ -91,36 +93,35 @@ if version >= 700
   au InsertLeave * hi StatusLine ctermbg=235 ctermfg=12
 endif
 
+" save keystrokes
+nnoremap 0 ^
+nnoremap ! :!
+nnoremap <leader>r :redraw!<CR>
+nnoremap j gj
+nnoremap k gk
+
 " map Silver Searcher
 nnoremap <leader>g :Ag!<space>
 
 " hint to keep lines short
 if exists('+colorcolumn')
-  set colorcolumn=80
+  set colorcolumn=84
 endif
 
+" window splits
+set winwidth=100
+
 " gist-vim
-let g:gist_open_browser_after_post = 1
+let g:gist_open_browser_after_post = 0
 let g:gist_detect_filetype = 1
 let g:gist_show_privates = 1
 let g:gist_post_private = 1
-let g:gist_update_on_write = 2
+let g:gist_update_on_write = 1
 
 " Autocommands
 if has("autocmd")
   " Remove unneeded white space at the end of lines.
   autocmd FileType c,coffee,css,cpp,erb,haml,html,java,js,md,pl,php,py,rb,rdoc,ru,scss,txt,xml,yml autocmd BufWritePre <buffer> :%s/\s\+$//e
-
-  " Regenerate ctags
-  autocmd FileType c,cpp,erb,js,md,pgp,py,rb,rdoc,ru,scss,yml autocmd BufWritePost <buffer> silent! !ctags -R &
-
-  " Syntax of these languages is fussy over tabs vs spaces
-  autocmd FileType make setlocal tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
-  autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-
-  " Customizations based on house-style
-  autocmd FileType c setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-  autocmd FileType html setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
   " Treat <li> and <p> tags like the block tags they are
   let g:html_indent_tags = 'li\|p'
@@ -143,6 +144,8 @@ if has("autocmd")
     \ endif
 
   autocmd BufReadPost fugitive://* set bufhidden=delete
+
+  autocmd BufReadPost quickfix nnoremap <buffer> q :q<CR>
 endif
 
 " Plugin settings
@@ -150,39 +153,14 @@ if has("eval")
   let g:netrw_list_hide = '^\.,^tags$'
 endif
 
-"
-" Section: Commands {{{1
-" ----------------------
-if has("eval")
-  " copied from http://github.com/tpope/tpope/.vimrc
-  " don't actually know what the function does, though. But it's used for
-  " fugitive status line
-  function! SL(function)
-    if exists('*'.a:function)
-      return call(a:function,[])
-    else
-      return ''
-    endif
-  endfunction
-endif
-
 " If typing 'W' in command mode, do 'w' and don't bitch at me
-cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'w')?('W'):('w'))
+cabbrev Wq :wq
+cabbrev W :w
+cabbrev Bd bd
 
-nnoremap Q :<C-U>q<CR>
-nnoremap ; :
-
-" Make it easier to navigate to different windows
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap Q :<C-U>qall<CR>
 nnoremap <leader>q :cclose<CR>
 nnoremap <leader>f :CtrlP<CR>
-
-" Uppercase word using <c-u>
-inoremap <c-u> <esc>viwUea
-nnoremap <c-u> viwUe
 
 " Easily write files
 nnoremap <leader>w :w<cr>
@@ -192,16 +170,13 @@ nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader>et :tabedit ~/.tmux.conf<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" bundler mappings
-nnoremap <leader>bb :Bundle<CR>
-nnoremap <leader>bu :Bundle update
-nnoremap <leader>bo :Bundle outdated<CR>
 
 " vim-test
-nnoremap <leader>t :TestFile<CR>
-nnoremap <leader>s :TestNearest<CR>
+nnoremap <leader>T :TestFile<CR>
+nnoremap <leader>t :TestNearest<CR>
 nnoremap <leader>l :TestLast<CR>
 nnoremap <leader>a :TestSuite<CR>
 let g:test#strategy = "dispatch"
-let g:test#ruby#rspec#executable = "foreman run rspec"
-let g:test#ruby#cucumber#executable = "foreman run cucumber"
+let g:test#ruby#rspec#executable = "foreman run bundle exec rspec"
+let g:test#ruby#cucumber#executable = "foreman run bundle exec cucumber"
+let g:test#ruby#minitest#executable = "foreman run rake"
