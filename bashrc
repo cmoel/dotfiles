@@ -1,5 +1,4 @@
 # aliases, shell variables, and prompt
-set shell=$SHELL
 source "${HOME}/.bash_aliases"
 source "${HOME}/.bash_prompt"
 source "${HOME}/.bash_shell_variables"
@@ -13,8 +12,7 @@ done
 # PATH...
 export GOPATH="${HOME}/code/go"
 PATH="${HOME}/bin"                                            # First home folder bin
-PATH="${PATH}:/Applications/Postgres.app/Contents/Versions/9.3/bin"
-PATH="${PATH}:${GOPATH}/bin"
+PATH="${PATH}:/Applications/Postgres.app/Contents/Versions/9.4/bin"
 PATH="${PATH}:/usr/local/bin:/usr/local/sbin"                 # local stuffs
 PATH="${PATH}:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin"     # Then add the other default OS X places
 export PATH
@@ -28,6 +26,10 @@ fi
 function serve {
   ruby -run -e httpd . -p3000
 }
+
+if [ $(docker-machine status dev) = "Running" ]; then
+  eval "$(docker-machine env dev)"
+fi
 
 # chruby
 source /usr/local/opt/chruby/share/chruby/chruby.sh
