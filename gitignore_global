@@ -26,6 +26,8 @@
 *.sql
 *.sqlite
 *.sqlite3-journal
+dump.rdb
+/server-access
 
 # OS generated files #
 ######################
@@ -83,6 +85,13 @@ pickle-email-*.html
 /config/initializers/secret_token.rb
 /zeus.json
 /custom_plan.rb
+.env
+
+
+# Node #
+########
+node_modules
+bower_components
 
 
 # Elixir #
@@ -95,14 +104,20 @@ pickle-email-*.html
 *.sass-cache
 
 
+# Elm #
+#######
+elm-stuff
+
+
 # vim #
 #######
 .*.sw[a-z]
 *.sw[a-z]
 *.un~
-Session.vim
+*.vim
 .netrwhist
 tags
+.projections.json
 
 
 # Xcode #

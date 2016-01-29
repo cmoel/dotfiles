@@ -8,12 +8,12 @@ pager = less -FRSX
 tool = vimdiff
 
 [alias]
-harvest = !git log --oneline --all --reverse --since="5am" --author="Christopher" | sed 's/^/* /'
+harvest = !git log --oneline --reverse --since="5am" --author="Christopher" | sed 's/^/* /'
 hist = log --graph --decorate --oneline --all
 co = checkout
 dc = diff --cached
 st = status
-ci = commit
+ci = commit -v
 di = diff
 br = branch
 df = diff
@@ -31,9 +31,6 @@ tool = vimdiff
 [hub]
 protocol = https
 
-[init]
-templatedir = /Users/cmoel/.git_template
-
 [pull]
 rebase = true
 
@@ -46,3 +43,9 @@ whitespace = nowarn
 	smudge = git-media-smudge %f
 [github]
 	user = cmoel
+[rebase]
+	autosquash = true
+
+[gitsh]
+	noGreeting = true
+	defaultCommand = status --short --branch && :echo
