@@ -7,6 +7,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " plugins
 Plugin 'artnez/vim-wipeout'
+Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'godlygeek/tabular'
 Plugin 'janko-m/vim-test'
@@ -30,7 +31,6 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-tbone'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-vinegar'
 
@@ -188,9 +188,10 @@ nnoremap <c-u> viwUe
 " Easily write files
 nnoremap <leader>w :w<cr>
 
-" Easily edit and source .vimrc
-nnoremap <leader>ve :vsplit $MYVIMRC<cr>
-nnoremap <leader>vs :source $MYVIMRC<cr>
+" Easily edit and source .vimrc and .tmux.conf
+nnoremap <leader>ev :tabedit $MYVIMRC<cr>
+nnoremap <leader>et :tabedit ~/.tmux.conf<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " bundler mappings
 nnoremap <leader>bb :Bundle<CR>

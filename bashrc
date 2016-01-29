@@ -31,6 +31,9 @@ if [ $(docker-machine status dev) = "Running" ]; then
   eval "$(docker-machine env dev)"
 fi
 
+# ensure tumux is running
+source "${HOME}/.ensure_tmux_is_running"
+
 # chruby
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
