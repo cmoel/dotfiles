@@ -30,30 +30,29 @@ Plugin 'tpope/vim-obsession'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-rake'
 Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-vinegar'
 
 " back to regularly scheduled vimrc
 call vundle#end()
-filetype plugin indent on
+filetype indent plugin on
 
-set autoindent
-set backspace=indent,eol,start
-set incsearch       " Incremental search
-set laststatus=2    " Always show status line
+set ignorecase
+set smartcase
+set number
 set relativenumber
 set numberwidth=5
-set ruler
-set showcmd
-set smartcase       " Case insensitive searches become sensitive with capitals"
-" set splitbelow      " Split windows at bottom"
-" set statusline=[%n]\ %<%.99f\ %h%w%m%r%{SL('CapsLockStatusline')}%y%{SL('fugitive#statusline')}%#ErrorMsg#%{SL('SyntasticStatuslineFlag')}%*%=%-14.(%l,%c%V%)\ %P
+set nobackup
+set noswapfile
+set splitbelow
+set splitright
 set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
+set showcmd
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 set visualbell
 set virtualedit=block
-set wildmenu
 set wildmode=list:longest,full
 set wildignore+=*~,*.aux,tags
 set cursorline
