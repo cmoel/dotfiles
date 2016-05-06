@@ -1,49 +1,44 @@
-" setup Vundle
 set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " plugins
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'godlygeek/tabular'
-Plugin 'janko-m/vim-test'
-Plugin 'kana/vim-textobj-user'
-Plugin 'kien/ctrlp.vim'
-Plugin 'mattn/gist-vim'
-Plugin 'mattn/webapi-vim'
-Plugin 'mxw/vim-jsx'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'othree/yajs.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'rking/ag.vim'
-Plugin 'szw/vim-tags'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-characterize'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-git'
-Plugin 'tpope/vim-liquid'
-Plugin 'tpope/vim-obsession'
-Plugin 'tpope/vim-projectionist'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-rake'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-sleuth'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-vinegar'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
+Plug 'elmcast/elm-vim'
+Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
+Plug 'janko-m/vim-test'
+Plug 'kana/vim-textobj-user'
+Plug 'kien/ctrlp.vim', { 'on': 'CtrlP' }
+Plug 'mattn/gist-vim', { 'on': 'Gist' }
+Plug 'mattn/webapi-vim', { 'on': 'Gist' }
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'jsx'] }
+Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'rking/ag.vim', { 'on': 'Ag' }
+Plug 'szw/vim-tags'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-liquid'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'tpope/vim-rake', { 'for': 'ruby' }
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
 
 " back to regularly scheduled vimrc
-call vundle#end()
-filetype indent plugin on
+call plug#end()
 
 set ignorecase
 set smartcase
@@ -118,6 +113,16 @@ let g:gist_show_privates = 1
 let g:gist_post_private = 1
 let g:gist_update_on_write = 1
 
+" jsx
+let g:jsx_ext_required = 0
+
+" elm
+let g:elm_format_autosave = 0
+let g:elm_setup_keybindings = 0
+let g:elm_make_show_warnings = 1
+nnoremap <leader>ef :ElmFormat<CR>
+nnoremap <leader>em :ElmMake %<CR>
+
 " Autocommands
 if has("autocmd")
   " Remove unneeded white space at the end of lines.
@@ -170,7 +175,6 @@ nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader>et :tabedit ~/.tmux.conf<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-
 " vim-test
 nnoremap <leader>T :TestFile<CR>
 nnoremap <leader>t :TestNearest<CR>
@@ -179,4 +183,4 @@ nnoremap <leader>a :TestSuite<CR>
 let g:test#strategy = "dispatch"
 let g:test#ruby#rspec#executable = "foreman run bundle exec rspec"
 let g:test#ruby#cucumber#executable = "foreman run bundle exec cucumber"
-let g:test#ruby#minitest#executable = "foreman run rake"
+let g:test#ruby#minitest#executable = "foreman run bundle exec rake"
