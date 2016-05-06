@@ -1,43 +1,38 @@
 [core]
-excludesfile = /Users/cmoel/.gitignore_global
-editor = vim
-autocrlf = input
-pager = less -FRSX
-
+	excludesfile = /Users/cmoel/.gitignore_global
+	editor = vim
+	autocrlf = input
+	pager = less -FRSX
 [diff]
-tool = vimdiff
-
+	tool = vimdiff
 [alias]
-harvest = !git log --oneline --reverse --since="5am" --author="Christopher" | sed 's/^/* /'
-hist = log --graph --decorate --oneline --all
-co = checkout
-dc = diff --cached
-st = status
-ci = commit -v
-di = diff
-br = branch
-df = diff
-
+	co = checkout
+	dc = diff --cached
+	st = status
+	ci = commit -v
+	di = diff
+	br = branch
+	df = diff
+	hist = log --graph --decorate --oneline --all
+	who = log --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'
+	glog = log -E -i --grep
+	stash = stash -u
 [user]
-name = Christopher Moeller
-email = cmoel@me.com
-
+	name = Christopher Moeller
+	email = cmoel@me.com
 [color]
-ui = true
-
+	ui = true
 [merge]
-tool = vimdiff
-
+	tool = vimdiff
+	ff = only
 [hub]
-protocol = https
-
+	protocol = https
 [pull]
-rebase = true
-
+	rebase = true
 [apply]
-whitespace = nowarn
+	whitespace = nowarn
 [push]
-	default = simple
+	default = upstream
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
@@ -45,7 +40,8 @@ whitespace = nowarn
 	user = cmoel
 [rebase]
 	autosquash = true
-
 [gitsh]
 	noGreeting = true
 	defaultCommand = status --short --branch && :echo
+[fetch]
+	prune = true
