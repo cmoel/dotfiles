@@ -18,10 +18,10 @@ PATH="${PATH}:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin"     # Then add the oth
 export PATH
 
 # CDPATH
-export CDPATH=".:${HOME}/code/grok"
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+  source $(brew --prefix)/etc/bash_completion
 fi
+export CDPATH=.:~/code/chargify
 
 function serve {
   ruby -run -e httpd . -p3000
@@ -31,9 +31,24 @@ if [ $(docker-machine status dev) = "Running" ]; then
   eval "$(docker-machine env dev)"
 fi
 
-# ensure tumux is running
-source "${HOME}/.ensure_tmux_is_running"
+if [ -e /Users/cmoel/.nix-profile/etc/profile.d/nix.sh ]; then
+  source /Users/cmoel/.nix-profile/etc/profile.d/nix.sh
+fi
+
+# nvm
+source $(brew --prefix nvm)/nvm.sh
 
 # chruby
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
+
+hitch() {
+  command hitch "$@"
+  if [[ -s "$HOME/.hitch_export_authors" ]]; then
+    source "$HOME/.hitch_export_authors"
+  fi
+}
+alias unhitch='hitch -u'
+
+# Uncomment to persist pair info between terminal instances
+hitch

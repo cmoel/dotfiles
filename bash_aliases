@@ -1,5 +1,6 @@
 alias rehash='source $HOME/.bash_profile'
 alias ebrc="open $HOME/.bashrc"
+alias gpg="gpg2"
 
 # Command/Application aliases
 alias ..='cd ..'
