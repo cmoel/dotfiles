@@ -181,6 +181,4 @@ nnoremap <leader>t :TestNearest<CR>
 nnoremap <leader>l :TestLast<CR>
 nnoremap <leader>a :TestSuite<CR>
 let g:test#strategy = "dispatch"
-let g:test#ruby#rspec#executable = "foreman run bundle exec rspec"
-let g:test#ruby#cucumber#executable = "foreman run bundle exec cucumber"
-let g:test#ruby#minitest#executable = "foreman run bundle exec rake"
+let test#javascript#mocha#options = "--compilers js:babel-core/register"
