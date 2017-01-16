@@ -5,14 +5,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
-Plug 'elmcast/elm-vim'
+Plug 'elmcast/elm-vim', { 'for': 'elm' }
 Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 Plug 'janko-m/vim-test'
 Plug 'kana/vim-textobj-user'
 Plug 'kien/ctrlp.vim', { 'on': 'CtrlP' }
 Plug 'mattn/gist-vim', { 'on': 'Gist' }
 Plug 'mattn/webapi-vim', { 'on': 'Gist' }
-Plug 'mxw/vim-jsx', { 'for': ['javascript', 'jsx'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'js', 'jsx'] }
 Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'rking/ag.vim', { 'on': 'Ag' }
@@ -40,6 +40,7 @@ Plug 'tpope/vim-vinegar'
 " back to regularly scheduled vimrc
 call plug#end()
 
+set exrc
 set ignorecase
 set smartcase
 set number
@@ -70,7 +71,7 @@ highlight VertSplit    ctermbg=236
 highlight ColorColumn  ctermbg=237
 highlight LineNr       ctermbg=236 ctermfg=240
 highlight CursorLineNr ctermbg=236 ctermfg=240
-highlight CursorLine   ctermbg=236 cterm=bold
+highlight CursorLine   ctermbg=236 cterm=none
 highlight StatusLineNC ctermbg=12  ctermfg=0
 highlight StatusLine   ctermbg=235 ctermfg=12
 highlight IncSearch    ctermbg=0   ctermfg=3
@@ -117,7 +118,7 @@ let g:gist_update_on_write = 1
 let g:jsx_ext_required = 0
 
 " elm
-let g:elm_format_autosave = 0
+let g:elm_format_autosave = 1
 let g:elm_setup_keybindings = 0
 let g:elm_make_show_warnings = 1
 nnoremap <leader>ef :ElmFormat<CR>
@@ -139,6 +140,9 @@ if has("autocmd")
 
   " Automatically wrap at 80 characters for Markdown
   autocmd BufRead,BufNewFile *.md setlocal textwidth=80"
+
+  " Use 4 spaces for Elm files
+  autocmd BufRead,BufNewFile *.elm setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -162,6 +166,8 @@ endif
 cabbrev Wq :wq
 cabbrev W :w
 cabbrev Bd bd
+cabbrev Tabe tabedit
+cabbrev Tabm tabmove
 
 nnoremap Q :<C-U>qall<CR>
 nnoremap <leader>q :cclose<CR>
@@ -182,3 +188,5 @@ nnoremap <leader>l :TestLast<CR>
 nnoremap <leader>a :TestSuite<CR>
 let g:test#strategy = "dispatch"
 let test#javascript#mocha#options = "--compilers js:babel-core/register"
+
+set secure
