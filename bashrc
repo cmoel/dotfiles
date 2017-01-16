@@ -35,8 +35,9 @@ if [ -e /Users/cmoel/.nix-profile/etc/profile.d/nix.sh ]; then
 fi
 unset SSL_CERT_FILE
 
-# nvm
-source $(brew --prefix nvm)/nvm.sh
+# asdf
+source $HOME/.asdf/asdf.sh
+source $HOME/.asdf/completions/asdf.bash
 
 # chruby
 source /usr/local/opt/chruby/share/chruby/chruby.sh
