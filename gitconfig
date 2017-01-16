@@ -2,9 +2,10 @@
 	excludesfile = /Users/cmoel/.gitignore_global
 	editor = vim
 	autocrlf = input
-	pager = less -FRSX
+	pager = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less -FRSX
 [diff]
 	tool = vimdiff
+	compactionHeuristic = true
 [alias]
 	co = checkout
 	dc = diff --cached
@@ -17,6 +18,7 @@
 	who = log --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'
 	glog = log -E -i --grep
 	stash = stash -u
+	unstage = reset
 [user]
 	name = Christopher Moeller
 	email = cmoel@me.com
@@ -45,3 +47,5 @@
 	defaultCommand = status --short --branch && :echo
 [fetch]
 	prune = true
+[interactive]
+	diffFilter = diff-highlight
