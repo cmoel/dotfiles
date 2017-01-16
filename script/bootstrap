@@ -40,7 +40,6 @@ link "~/dotfiles/gitignore_global", "~/.gitignore_global"
 link "~/dotfiles/irbrc", "~/.irbrc"
 link "~/dotfiles/iex.exs", "~/.iex.exs"
 link "~/dotfiles/pryrc", "~/.pryrc"
-link "~/dotfiles/tm_properties", "~/.tm_properties"
 link "~/dotfiles/tmux.conf", "~/.tmux.conf"
 link "~/dotfiles/vimrc", "~/.vimrc"
 
