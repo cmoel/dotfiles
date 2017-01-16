@@ -10,7 +10,6 @@ for f in git-completion.bash tmux; do
 done
 
 # PATH...
-export GOPATH="${HOME}/code/go"
 PATH="${HOME}/bin"                                            # First home folder bin
 PATH="${PATH}:/Applications/Postgres.app/Contents/Versions/9.4/bin"
 PATH="${PATH}:/usr/local/bin:/usr/local/sbin"                 # local stuffs
@@ -21,7 +20,7 @@ export PATH
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   source $(brew --prefix)/etc/bash_completion
 fi
-export CDPATH=.:~/code/chargify
+export CDPATH=.:~:~/code:~/code/chargify
 
 function serve {
   ruby -run -e httpd . -p3000
@@ -34,6 +33,7 @@ fi
 if [ -e /Users/cmoel/.nix-profile/etc/profile.d/nix.sh ]; then
   source /Users/cmoel/.nix-profile/etc/profile.d/nix.sh
 fi
+unset SSL_CERT_FILE
 
 # nvm
 source $(brew --prefix nvm)/nvm.sh
@@ -49,6 +49,10 @@ hitch() {
   fi
 }
 alias unhitch='hitch -u'
+
+setup-ssh() {
+  ssh-add -K "$HOME/.ssh/id_rsa"
+}
 
 # Uncomment to persist pair info between terminal instances
 hitch

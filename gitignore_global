@@ -92,6 +92,7 @@ pickle-email-*.html
 ########
 node_modules
 bower_components
+.serverless
 
 
 # Elixir #
@@ -118,6 +119,7 @@ elm-stuff
 .netrwhist
 tags
 .projections.json
+.vimrc
 
 
 # Xcode #
