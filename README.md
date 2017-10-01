@@ -1,5 +1,5 @@
 # cmoel's dotfiles
 
 ## Installation
-1. Close this repo
+1. Clone this repo
 * `$ script/bootstrap`
