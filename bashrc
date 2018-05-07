@@ -20,24 +20,17 @@ export PATH
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   source $(brew --prefix)/etc/bash_completion
 fi
-export CDPATH=.:~:~/code:~/code/chargify
+export CDPATH=.:~:~/code
 
 function serve {
   ruby -run -e httpd . -p3000
 }
 
-if [ $(docker-machine status dev) = "Running" ]; then
-  eval "$(docker-machine env dev)"
-fi
 
-if [ -e /Users/cmoel/.nix-profile/etc/profile.d/nix.sh ]; then
-  source /Users/cmoel/.nix-profile/etc/profile.d/nix.sh
-fi
-unset SSL_CERT_FILE
 
 # asdf
-source $HOME/.asdf/asdf.sh
-source $HOME/.asdf/completions/asdf.bash
+source /usr/local/opt/asdf/asdf.sh
+source /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
 
 # chruby
 source /usr/local/opt/chruby/share/chruby/chruby.sh

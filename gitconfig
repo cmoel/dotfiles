@@ -19,9 +19,12 @@
 	glog = log -E -i --grep
 	stash = stash -u
 	unstage = reset
+	recent = for-each-ref --count=5 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+	brf = checkout !$(git recent | fzf)
 [user]
 	name = Christopher Moeller
 	email = cmoel@me.com
+	signingkey = 6E303B45
 [color]
 	ui = true
 [merge]

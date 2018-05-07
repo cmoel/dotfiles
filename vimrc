@@ -2,25 +2,33 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 " plugins
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-runner'
+" Plug 'christoomey/vim-system-copy'
 Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 Plug 'elmcast/elm-vim', { 'for': 'elm' }
 Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 Plug 'janko-m/vim-test'
 Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-entire'
+Plug 'kana/vim-textobj-line'
+Plug 'kchmck/vim-coffee-script'
 Plug 'kien/ctrlp.vim', { 'on': 'CtrlP' }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'mattn/gist-vim', { 'on': 'Gist' }
 Plug 'mattn/webapi-vim', { 'on': 'Gist' }
+Plug 'prettier/vim-prettier',
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'js', 'jsx'] }
 Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'reasonml-editor/vim-reason-plus'
 Plug 'rking/ag.vim', { 'on': 'Ag' }
 Plug 'szw/vim-tags'
+Plug 'tommcdo/vim-exchange'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
@@ -31,8 +39,10 @@ Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'tpope/vim-rake', { 'for': 'ruby' }
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
@@ -53,6 +63,7 @@ set splitright
 set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
 set showcmd
 set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+set noerrorbells
 set visualbell
 set virtualedit=block
 set wildmode=list:longest,full
@@ -97,11 +108,11 @@ nnoremap j gj
 nnoremap k gk
 
 " map Silver Searcher
-nnoremap <leader>g :Ag!<space>
+nnoremap \ :Ag!<space>
 
 " hint to keep lines short
 if exists('+colorcolumn')
-  set colorcolumn=84
+  set colorcolumn=100
 endif
 
 " window splits
@@ -114,15 +125,26 @@ let g:gist_show_privates = 1
 let g:gist_post_private = 1
 let g:gist_update_on_write = 1
 
-" jsx
+" js/jsx
+let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 0
 
 " elm
+" let g:elm_format_autosave = 0
 let g:elm_format_autosave = 1
 let g:elm_setup_keybindings = 0
 let g:elm_make_show_warnings = 1
 nnoremap <leader>ef :ElmFormat<CR>
 nnoremap <leader>em :ElmMake %<CR>
+
+let g:prettier#autoformat = 0
+let g:prettier#exec_cmd_async = 1
+let g:prettier#config#print_width = 100
+" let g:prettier#config#semi = 'false'
+let g:prettier#config#jsx_bracket_same_line = 'false'
+let g:prettier#config#trailing_comma = 'es5'
+let g:prettier#config#parser = 'babylon'
+let g:prettier#config#single_quote = 'false'
 
 " Autocommands
 if has("autocmd")
@@ -163,15 +185,16 @@ if has("eval")
 endif
 
 " If typing 'W' in command mode, do 'w' and don't bitch at me
-cabbrev Wq :wq
-cabbrev W :w
+cabbrev Wq wq
+cabbrev W w
 cabbrev Bd bd
 cabbrev Tabe tabedit
 cabbrev Tabm tabmove
+cabbrev TAbe tabedit
+cabbrev TAbm tabmove
 
 nnoremap Q :<C-U>qall<CR>
 nnoremap <leader>q :cclose<CR>
-nnoremap <leader>f :CtrlP<CR>
 
 " Easily write files
 nnoremap <leader>w :w<cr>
@@ -181,12 +204,25 @@ nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 nnoremap <leader>et :tabedit ~/.tmux.conf<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
+" VTR
+let g:VtrOrientation = "h"
+let g:VtrPercentage = 35
+let g:vtr_filetype_runner_overrides = { 'javascript.jsx': 'node {file}' }
+
+nnoremap <leader>ra :VtrAttachToPane<cr>
+nnoremap <leader>rf :VtrFocusRunner<cr>
+nnoremap <leader>rr :VtrSendLinesToRunner<cr>
+nnoremap <leader>rd :VtrSendCtrlD<cr>
+nnoremap <leader>sf :VtrSendFile<cr>
+
 " vim-test
+let g:test#strategy = "vtr"
+let test#javascript#jest#options = "--ci"
+" let test#javascript#mocha#options = "--compilers js:babel-core/register"
+
 nnoremap <leader>T :TestFile<CR>
 nnoremap <leader>t :TestNearest<CR>
 nnoremap <leader>l :TestLast<CR>
 nnoremap <leader>a :TestSuite<CR>
-let g:test#strategy = "dispatch"
-let test#javascript#mocha#options = "--compilers js:babel-core/register"
 
 set secure
