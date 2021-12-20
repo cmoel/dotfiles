@@ -2,10 +2,12 @@
 	excludesfile = /Users/cmoel/.gitignore_global
 	editor = vim
 	autocrlf = input
-	pager = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less -FRSX
+	pager = diff-highlight | less -FRSX
+	ignorecase = false
+	attributesfile = /Users/cmoel/.gitattributes
 [diff]
 	tool = vimdiff
-	compactionHeuristic = true
+	compactionHeuristic = 1
 [alias]
 	co = checkout
 	dc = diff --cached
@@ -17,19 +19,18 @@
 	hist = log --graph --decorate --oneline --all
 	who = log --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'
 	glog = log -E -i --grep
-	stash = stash -u
 	unstage = reset
 	recent = for-each-ref --count=5 --sort=-committerdate refs/heads/ --format='%(refname:short)'
 	brf = checkout !$(git recent | fzf)
+	ctags = !.git/hooks/ctags
 [user]
 	name = Christopher Moeller
 	email = cmoel@me.com
-	signingkey = 6E303B45
+	signingkey = CD8D6DD1DF7E65EE
 [color]
 	ui = true
 [merge]
 	tool = vimdiff
-	ff = only
 [hub]
 	protocol = https
 [pull]
@@ -37,7 +38,7 @@
 [apply]
 	whitespace = nowarn
 [push]
-	default = upstream
+	default = current
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
@@ -52,3 +53,18 @@
 	prune = true
 [interactive]
 	diffFilter = diff-highlight
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pager]
+	log = diff-highlight | less -FRSX
+	show = diff-highlight | less -FRSX
+	diff = diff-highlight | less -FRSX
+[commit]
+	gpgSign = true
+[init]
+	defaultBranch = main
+[gpg]
+	program = gpg
