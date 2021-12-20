@@ -6,6 +6,7 @@
 
 - link:
     ~/.config/kitty: config/kitty
+    ~/.config/nvim: config/nvim
     ~/.curlrc: curlrc
     ~/.gitattributes: gitattributes
     ~/.gitconfig: gitconfig
