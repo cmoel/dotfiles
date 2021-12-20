@@ -1,0 +1,14 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ["~"]
+
+- link:
+    ~/.curlrc: curlrc
+    ~/.gitattributes: gitattributes
+    ~/.gitconfig: gitconfig
+    ~/.gitignore_global: gitignore_global
+    ~/.gitshrc: gitshrc
+    ~/.tmux.conf: tmux.conf
+    ~/.vimrc: vimrc
