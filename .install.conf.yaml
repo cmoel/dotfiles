@@ -4,6 +4,9 @@
 
 - clean: ["~"]
 
+- create:
+    - ~/.bin
+
 - link:
     ~/.bin/tat: bin/tat
     ~/.config/kitty: config/kitty
