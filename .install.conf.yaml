@@ -5,6 +5,7 @@
 - clean: ["~"]
 
 - link:
+    ~/.bin/tat: bin/tat
     ~/.config/kitty: config/kitty
     ~/.config/nvim: config/nvim
     ~/.curlrc: curlrc
