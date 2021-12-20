@@ -5,6 +5,7 @@
 - clean: ["~"]
 
 - link:
+    ~/.config/kitty: config/kitty
     ~/.curlrc: curlrc
     ~/.gitattributes: gitattributes
     ~/.gitconfig: gitconfig
