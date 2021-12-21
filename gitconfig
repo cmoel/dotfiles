@@ -1,6 +1,6 @@
 [core]
 	excludesfile = /Users/cmoel/.gitignore_global
-	editor = vim
+	editor = nvim
 	autocrlf = input
 	pager = diff-highlight | less -FRSX
 	ignorecase = false
