@@ -1,0 +1,9 @@
+#!/bin/sh
+
+brew_prefix=`brew --prefix`
+version=`brew list --versions git | cut -c 5-`
+dhl_path="$brew_prefix/Cellar/git/$version/share/git-core/contrib/diff-highlight/diff-highlight"
+
+# delete current diff-highlight link/file and recreate it
+rm -f $HOME/.bin/diff-highlight
+ln -s $dhl_path $HOME/.bin/diff-highlight

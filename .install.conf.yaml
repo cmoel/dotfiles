@@ -9,6 +9,7 @@
 
 - link:
     ~/.bin/tat: bin/tat
+    ~/.bin/link-diff-highlight: bin/link-diff-highlight
     ~/.config/kitty: config/kitty
     ~/.config/nvim: config/nvim
     ~/.curlrc: curlrc
